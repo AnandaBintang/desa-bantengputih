@@ -11,6 +11,7 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Hidden;
+use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -22,6 +23,7 @@ use Filament\Tables\Actions\ForceDeleteAction;
 use Filament\Tables\Actions\ForceDeleteBulkAction;
 use Filament\Tables\Actions\RestoreAction;
 use Filament\Tables\Actions\RestoreBulkAction;
+use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
@@ -54,6 +56,26 @@ class NewsResource extends Resource
                 ->label('Slug')
                 ->required(),
 
+            Select::make('category')
+                ->label('Kategori')
+                ->options([
+                    'Pembangunan' => 'Pembangunan',
+                    'Sosial' => 'Sosial',
+                    'Budaya' => 'Budaya',
+                    'Ekonomi' => 'Ekonomi',
+                ])
+                ->required(),
+
+            Toggle::make('is_featured')
+                ->label('Tampilkan sebagai Berita Utama')
+                ->helperText('Hanya satu berita yang bisa ditampilkan sebagai berita utama.')
+                ->afterStateUpdated(function ($state, callable $set, $get, $record) {
+                    if ($state) {
+                        News::where('id', '!=', optional($record)->id)->update(['is_featured' => false]);
+                    }
+                }),
+
+
             RichEditor::make('content')->label('Konten')->required()->columnSpanFull(),
 
             SpatieMediaLibraryFileUpload::make('image')
@@ -78,6 +100,13 @@ class NewsResource extends Resource
                 ->label('Gambar')
                 ->getStateUsing(fn($record) => $record->getFirstMediaUrl('news')),
             TextColumn::make('title')->label('Judul')->searchable(),
+            TextColumn::make('category')->label('Kategori')->sortable(),
+            IconColumn::make('is_featured')
+                ->label('Utama')
+                ->boolean()
+                ->trueIcon('heroicon-o-star')
+                ->falseIcon('heroicon-o-star'),
+
             TextColumn::make('user.name')->label('Penulis')->sortable(),
             TextColumn::make('published_at')->label('Dipublikasikan')->dateTime(),
         ])

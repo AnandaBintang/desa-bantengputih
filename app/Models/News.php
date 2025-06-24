@@ -18,6 +18,8 @@ class News extends Model implements HasMedia
         'image',
         'published_at',
         'user_id',
+        'category',
+        'is_featured',
     ];
 
     protected $casts = [
@@ -51,6 +53,11 @@ class News extends Model implements HasMedia
     {
         return $query->where('title', 'like', '%' . $searchTerm . '%')
             ->orWhere('content', 'like', '%' . $searchTerm . '%');
+    }
+
+    public function scopeFeatured($query)
+    {
+        return $query->where('is_featured', true);
     }
 
     public function getRouteKeyName()
