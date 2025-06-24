@@ -4,16 +4,20 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-class Gallery extends Model
+class Gallery extends Model implements HasMedia
 {
-    use SoftDeletes;
+    use SoftDeletes, InteractsWithMedia;
 
     protected $fillable = [
         'title',
-        'image',
+        'video',
         'description',
         'category',
+        'type',
     ];
 
     protected $casts = [
@@ -35,5 +39,21 @@ class Gallery extends Model
     public function getImageUrlAttribute()
     {
         return asset('storage/' . $this->image);
+    }
+
+    // Di model Gallery
+    public function registerMediaConversions(Media $media = null): void
+    {
+        $this->addMediaConversion('thumb')
+            ->width(300)
+            ->height(200)
+            ->performOnCollections('galleries')
+            ->nonQueued();
+    }
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('galleries')
+            ->acceptsMimeTypes(['video/mp4', 'video/avi', 'video/mov', 'video/wmv', 'video/webm', 'image/jpeg', 'image/png']);
     }
 }

@@ -22,13 +22,12 @@ class MediaResource extends Resource
     protected static ?string $navigationLabel = 'Gambar';
     protected static ?string $pluralModelLabel = 'Semua Gambar';
     protected static ?string $navigationGroup = 'Konten Website';
-    protected static ?int $navigationSort = 3;
+    protected static ?int $navigationSort = 1;
+    protected static bool $shouldRegisterNavigation = false;
 
     public static function form(Forms\Form $form): Forms\Form
     {
-        return $form->schema([
-            // Form tidak dibutuhkan, kita hanya tampilkan gambar
-        ]);
+        return $form->schema([]);
     }
 
     public static function table(Table $table): Table
