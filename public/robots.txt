@@ -1,2 +1,22 @@
 User-agent: *
-Disallow:
+Allow: /
+
+# Sitemap
+Sitemap: https://yourdomain.com/sitemap.xml
+
+# Disallow admin areas
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /login/
+Disallow: /register/
+
+# Allow all other pages
+Allow: /
+Allow: /tentang
+Allow: /berita
+Allow: /galeri
+Allow: /produk
+Allow: /layanan
+Allow: /pengaduan
+Allow: /transparansi
+Allow: /kontak
