@@ -3,6 +3,7 @@
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\AboutController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -21,9 +22,7 @@ Route::middleware('auth')->group(function () {
 Route::get('/documents/{document}/preview', [DocumentController::class, 'preview'])->name('document.preview');
 Route::get('/documents/{document}/download', [DocumentController::class, 'download'])->name('document.download');
 
-Route::get('/tentang', function () {
-    return view('pages.about');
-})->name('about');
+Route::get('/tentang', [AboutController::class, 'index'])->name('about');
 
 Route::get('/galeri', function () {
     return view('pages.gallery');

@@ -17,14 +17,14 @@
                 </x-nav-link>
 
                 <!-- Profil Dropdown -->
-                <x-nav-dropdown title="Profil Desa" icon="fas fa-info-circle">
-                    <x-nav-dropdown-item href="{{ route('about') }}" icon="fas fa-building">
+                <x-nav-dropdown title="Profil Desa" icon="fas fa-info-circle" :active="request()->routeIs(['about', 'gallery', 'news.*'])">
+                    <x-nav-dropdown-item href="{{ route('about') }}" icon="fas fa-building" :active="request()->routeIs('about')">
                         Tentang Kami
                     </x-nav-dropdown-item>
-                    <x-nav-dropdown-item href="{{ route('gallery') }}" icon="fas fa-images">
+                    <x-nav-dropdown-item href="{{ route('gallery') }}" icon="fas fa-images" :active="request()->routeIs('gallery')">
                         Galeri
                     </x-nav-dropdown-item>
-                    <x-nav-dropdown-item href="{{ route('news.index') }}" icon="fas fa-newspaper">
+                    <x-nav-dropdown-item href="{{ route('news.index') }}" icon="fas fa-newspaper" :active="request()->routeIs('news.*')">
                         Berita & Kegiatan
                     </x-nav-dropdown-item>
                 </x-nav-dropdown>
