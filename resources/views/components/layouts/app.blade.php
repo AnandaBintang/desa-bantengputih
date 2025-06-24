@@ -128,7 +128,7 @@
     <x-footer />
 
     <!-- Additional Scripts -->
-    {{ $scripts ?? '' }}
+    @stack('scripts')
 
     <!-- Structured Data for Breadcrumbs (if applicable) -->
     @if (isset($breadcrumbs))

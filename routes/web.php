@@ -4,6 +4,7 @@ use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\GalleryController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -24,9 +25,10 @@ Route::get('/documents/{document}/download', [DocumentController::class, 'downlo
 
 Route::get('/tentang', [AboutController::class, 'index'])->name('about');
 
-Route::get('/galeri', function () {
-    return view('pages.gallery');
-})->name('gallery');
+Route::get('/galeri', [GalleryController::class, 'index'])->name('gallery');
+Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery.index');
+Route::get('/gallery/load-more', [GalleryController::class, 'loadMore'])->name('gallery.load-more');
+Route::get('/galeri/{gallery}', [GalleryController::class, 'show'])->name('gallery.show');
 
 Route::get('/berita', function () {
     return view('pages.news.index');
