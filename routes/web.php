@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\GuestUploadController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -63,5 +64,9 @@ Route::get('/transparansi', function () {
 Route::get('/sitemap.xml', function () {
     return response()->file(public_path('sitemap.xml'));
 })->name('sitemap');
+
+// Guest upload routes
+Route::get('/upload', [GuestUploadController::class, 'showUploadForm'])->name('guest.upload');
+Route::post('/upload', [GuestUploadController::class, 'submitUpload'])->name('guest.submit');
 
 require __DIR__ . '/auth.php';

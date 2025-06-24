@@ -460,20 +460,8 @@ class Gallery extends Model implements HasMedia
 
     public function registerMediaCollections(): void
     {
+        // Only for photos
         $this->addMediaCollection('galleries')
-            ->acceptsMimeTypes([
-                'video/mp4',
-                'video/avi',
-                'video/mov',
-                'video/wmv',
-                'video/webm',
-                'video/quicktime',
-                'video/x-msvideo',
-                'video/x-ms-wmv',
-                'image/jpeg',
-                'image/png',
-                'image/gif',
-                'image/webp'
-            ]);
+            ->acceptsMimeTypes(['image/jpeg', 'image/png', 'image/gif', 'image/webp']);
     }
 }

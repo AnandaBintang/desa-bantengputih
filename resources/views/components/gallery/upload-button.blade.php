@@ -19,8 +19,8 @@
     ][$type];
 @endphp
 
-<button
-    class="px-8 py-3 rounded-lg font-semibold transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl {{ $config['class'] }}"
+<a href="{{ route('guest.upload', ['type' => $type]) }}"
+    class="inline-block px-8 py-3 rounded-lg font-semibold transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl {{ $config['class'] }}"
     @if ($config['style']) style="{{ $config['style'] }}" @endif>
     <i class="{{ $config['icon'] }} mr-2"></i>{{ $config['text'] }}
-</button>
+</a>
