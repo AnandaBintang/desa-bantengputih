@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,4 +18,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+// Public routes
+Route::get('/documents/{document}/preview', [DocumentController::class, 'preview'])->name('document.preview');
+Route::get('/documents/{document}/download', [DocumentController::class, 'download'])->name('document.download');
+
+require __DIR__ . '/auth.php';
