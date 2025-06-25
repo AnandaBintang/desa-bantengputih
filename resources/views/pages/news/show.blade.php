@@ -156,11 +156,11 @@
 
                             <!-- Article Content -->
                             <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed">
-                                {{-- @if ($news->excerpt)
+                                @if ($news->excerpt)
                                     <p class="text-xl text-gray-600 mb-8 font-medium">
                                         {{ $news->excerpt }}
                                     </p>
-                                @endif --}}
+                                @endif
 
                                 {!! $news->content !!}
                             </div>
@@ -173,15 +173,7 @@
                                         <span class="text-sm text-gray-600 mr-2">Tags:</span>
                                         <span
                                             class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm hover:bg-gray-200 transition-colors duration-200">
-                                            #{{ strtolower($news->category) }}
-                                        </span>
-                                        <span
-                                            class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm hover:bg-gray-200 transition-colors duration-200">
-                                            #berita-desa
-                                        </span>
-                                        <span
-                                            class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm hover:bg-gray-200 transition-colors duration-200">
-                                            #bantengputih
+                                            #{{ strtolower($news->tags) }}
                                         </span>
                                     </div>
 

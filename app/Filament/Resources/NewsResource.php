@@ -50,6 +50,7 @@ class NewsResource extends Resource
                 ->live(onBlur: true)
                 ->afterStateUpdated(function (string $context, $state, callable $set) {
                     $set('slug', Str::slug($state));
+                    $set('meta_title', $state);
                 }),
 
             Hidden::make('slug')
@@ -64,7 +65,11 @@ class NewsResource extends Resource
                     'Budaya' => 'Budaya',
                     'Ekonomi' => 'Ekonomi',
                 ])
-                ->required(),
+                ->required()
+                ->live()
+                ->afterStateUpdated(function (string $context, $state, callable $set) {
+                    $set('tags', $state);
+                }),
 
             Toggle::make('is_featured')
                 ->label('Tampilkan sebagai Berita Utama')
@@ -75,6 +80,14 @@ class NewsResource extends Resource
                     }
                 }),
 
+            TextInput::make('excerpt')
+                ->label('Ringkasan')
+                ->maxLength(100)
+                ->columnSpanFull()
+                ->live(onBlur: true)
+                ->afterStateUpdated(function (string $context, $state, callable $set) {
+                    $set('meta_description', $state);
+                }),
 
             RichEditor::make('content')->label('Konten')->required()->columnSpanFull(),
 
@@ -85,6 +98,15 @@ class NewsResource extends Resource
                 ->required(),
 
             DateTimePicker::make('published_at')->label('Tanggal Publikasi')->required(),
+
+            Hidden::make('meta_title')
+                ->label('Meta Title'),
+
+            Hidden::make('meta_description')
+                ->label('Meta Deskripsi'),
+
+            Hidden::make('tags')
+                ->label('Tags'),
 
             Hidden::make('user_id')
                 ->label('Penulis')
@@ -106,7 +128,7 @@ class NewsResource extends Resource
                 ->boolean()
                 ->trueIcon('heroicon-o-star')
                 ->falseIcon('heroicon-o-star'),
-
+            TextColumn::make('views_count')->label('Dilihat')->numeric()->sortable(),
             TextColumn::make('user.name')->label('Penulis')->sortable(),
             TextColumn::make('published_at')->label('Dipublikasikan')->dateTime(),
         ])
@@ -115,6 +137,14 @@ class NewsResource extends Resource
                 SelectFilter::make('user_id')
                     ->label('Penulis')
                     ->options(User::pluck('name', 'id')),
+                SelectFilter::make('category')
+                    ->label('Kategori')
+                    ->options([
+                        'Pembangunan' => 'Pembangunan',
+                        'Sosial' => 'Sosial',
+                        'Budaya' => 'Budaya',
+                        'Ekonomi' => 'Ekonomi',
+                    ]),
             ])
             ->actions([
                 EditAction::make(),
