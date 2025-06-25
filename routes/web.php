@@ -31,14 +31,10 @@ Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery.index
 Route::get('/gallery/load-more', [GalleryController::class, 'loadMore'])->name('gallery.load-more');
 Route::get('/galeri/{gallery}', [GalleryController::class, 'show'])->name('gallery.show');
 
-Route::get('/berita', function () {
-    return view('pages.news.index');
-})->name('news.index');
-
-// Static news detail route
-Route::get('/berita/{slug}', function ($slug) {
-    return view('pages.news.show', ['slug' => $slug]);
-})->name('news.show');
+// News routes
+Route::get('/berita', [App\Http\Controllers\NewsController::class, 'index'])->name('news.index');
+Route::get('/berita/load-more', [App\Http\Controllers\NewsController::class, 'loadMore'])->name('news.load-more');
+Route::get('/berita/{news:slug}', [App\Http\Controllers\NewsController::class, 'show'])->name('news.show');
 
 Route::get('/produk', function () {
     return view('pages.products.index');
