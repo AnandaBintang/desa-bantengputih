@@ -168,4 +168,38 @@ class News extends Model implements HasMedia
             ->height(500)
             ->performOnCollections('featured');
     }
+
+    public static function generateUniqueSlug(string $title, ?int $excludeId = null): string
+    {
+        $slug = Str::slug($title);
+        $originalSlug = $slug;
+        $counter = 1;
+
+        while (static::where('slug', $slug)
+            ->when($excludeId, fn($query) => $query->where('id', '!=', $excludeId))
+            ->exists()
+        ) {
+            $slug = $originalSlug . '-' . $counter;
+            $counter++;
+        }
+
+        return $slug;
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($news) {
+            if (empty($news->slug)) {
+                $news->slug = static::generateUniqueSlug($news->title);
+            }
+        });
+
+        static::updating(function ($news) {
+            if ($news->isDirty('title') && empty($news->slug)) {
+                $news->slug = static::generateUniqueSlug($news->title, $news->id);
+            }
+        });
+    }
 }

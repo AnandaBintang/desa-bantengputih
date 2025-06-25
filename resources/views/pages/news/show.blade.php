@@ -173,7 +173,14 @@
                                         <span class="text-sm text-gray-600 mr-2">Tags:</span>
                                         <span
                                             class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm hover:bg-gray-200 transition-colors duration-200">
-                                            #{{ strtolower($news->tags) }}
+                                            @if ($news->tags)
+                                                @foreach (is_string($news->tags) ? json_decode($news->tags, true) : $news->tags as $tag)
+                                                    <span
+                                                        class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm hover:bg-gray-200 transition-colors duration-200 mr-2 mb-2 inline-block">
+                                                        #{{ $tag }}
+                                                    </span>
+                                                @endforeach
+                                            @endif
                                         </span>
                                     </div>
 
