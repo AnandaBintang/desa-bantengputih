@@ -14,9 +14,9 @@
             <h3 class="font-semibold text-gray-800 mb-1">
                 {!! Str::limit($photo['title'], 25) !!}
             </h3>
-            <p class="text-sm text-gray-600">
+            <div class="text-sm text-gray-600">
                 {!! Str::limit($photo['description'], 30) !!}
-            </p>
+            </div>
         </div>
     </div>
 </div>

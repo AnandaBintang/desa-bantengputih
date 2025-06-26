@@ -6,6 +6,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\GuestUploadController;
+use App\Http\Controllers\NewsController;
+use App\Http\Controllers\ServiceController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -32,9 +34,20 @@ Route::get('/gallery/load-more', [GalleryController::class, 'loadMore'])->name('
 Route::get('/galeri/{gallery}', [GalleryController::class, 'show'])->name('gallery.show');
 
 // News routes
-Route::get('/berita', [App\Http\Controllers\NewsController::class, 'index'])->name('news.index');
-Route::get('/berita/load-more', [App\Http\Controllers\NewsController::class, 'loadMore'])->name('news.load-more');
-Route::get('/berita/{news:slug}', [App\Http\Controllers\NewsController::class, 'show'])->name('news.show');
+Route::get('/berita', [NewsController::class, 'index'])->name('news.index');
+Route::get('/berita/load-more', [NewsController::class, 'loadMore'])->name('news.load-more');
+Route::get('/berita/{news:slug}', [NewsController::class, 'show'])->name('news.show');
+
+// Service routes
+Route::get('/layanan', [ServiceController::class, 'index'])->name('services');
+Route::get('/layanan/{document}', [ServiceController::class, 'show'])->name('services.show');
+Route::get('/layanan/{document}/preview', [ServiceController::class, 'preview'])->name('services.preview');
+Route::get('/layanan/{document}/download', [ServiceController::class, 'download'])->name('services.download');
+
+// Population routes
+Route::get('/penduduk', function () {
+    return view('pages.population.index');
+})->name('population');
 
 Route::get('/produk', function () {
     return view('pages.products.index');
@@ -43,10 +56,6 @@ Route::get('/produk', function () {
 Route::get('/kontak', function () {
     return view('pages.contact');
 })->name('contact');
-
-Route::get('/layanan', function () {
-    return view('pages.services');
-})->name('services');
 
 Route::get('/pengaduan', function () {
     return view('pages.complaints.create');

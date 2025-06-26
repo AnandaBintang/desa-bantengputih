@@ -17,9 +17,9 @@
                 {{ $article->title }}
             </a>
         </h3>
-        <p class="text-gray-600">
+        <div class="text-gray-600">
             {{ Str::limit($article->excerpt ?? strip_tags($article->content), 120) }}
-        </p>
+        </div>
         <a href="{{ route('news.show', $article->slug) }}"
             class="inline-flex items-center font-semibold mt-3 transition-colors duration-200" style="color: #4CAF50;"
             onmouseover="this.style.color='#45a049'" onmouseout="this.style.color='#4CAF50'">

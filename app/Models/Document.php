@@ -47,6 +47,15 @@ class Document extends Model
         return round($bytes, 2) . ' ' . $units[$i];
     }
 
+    public function getFileSizeInBytesAttribute(): ?int
+    {
+        if (!$this->file || !Storage::exists($this->file)) {
+            return null;
+        }
+
+        return Storage::size($this->file);
+    }
+
     public function getFileExtensionAttribute(): ?string
     {
         return $this->file ? pathinfo($this->file, PATHINFO_EXTENSION) : null;
@@ -54,7 +63,19 @@ class Document extends Model
 
     public function isPdf(): bool
     {
-        return $this->file_extension === 'pdf';
+        return strtolower($this->file_extension) === 'pdf';
+    }
+
+    public function isImage(): bool
+    {
+        $imageExtensions = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
+        return in_array(strtolower($this->file_extension), $imageExtensions);
+    }
+
+    public function isDocument(): bool
+    {
+        $docExtensions = ['pdf', 'doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx'];
+        return in_array(strtolower($this->file_extension), $docExtensions);
     }
 
     public function scopeByCategory($query, $category)
@@ -62,8 +83,24 @@ class Document extends Model
         return $query->where('category', $category);
     }
 
+    public function scopeByType($query, $type)
+    {
+        return $query->where('type', $type);
+    }
+
     public function scopeRecent($query)
     {
         return $query->orderBy('created_at', 'desc');
+    }
+
+    public function scopePublished($query)
+    {
+        return $query->whereNotNull('uploaded_at')
+            ->where('uploaded_at', '<=', now());
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'id';
     }
 }

@@ -23,9 +23,9 @@
         <h3 class="text-xl font-bold text-gray-800 mb-2 line-clamp-2">
             {{ $video['title'] }}
         </h3>
-        <p class="text-gray-600 mb-4 line-clamp-3">
+        <div class="text-gray-600 mb-4 line-clamp-3">
             {!! $video['description'] !!}
-        </p>
+        </div>
         <div class="flex items-center justify-between text-sm text-gray-500">
             {{-- <span><i class="fas fa-eye mr-1"></i>{{ $video['views'] }} views</span> --}}
             <span><i class="fas fa-calendar mr-1"></i>{{ $video['date'] }}</span>
