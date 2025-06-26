@@ -66,7 +66,7 @@
                                     </h4>
                                     <span class="text-sm text-gray-500">
                                         {{ strtoupper($document->file_extension ?? 'PDF') }} -
-                                        {{-- {{ $document->file_size ? number_format($document->file_size / 1024 / 1024, 1) . ' MB' : '0 MB' }} --}}
+                                        {{ $document->file_size }}
                                     </span>
                                 </div>
                                 @if ($document->description)
@@ -117,7 +117,7 @@
                                     </h4>
                                     <span class="text-sm text-gray-500">
                                         {{ strtoupper($document->file_extension ?? 'PDF') }} -
-                                        {{-- {{ $document->file_size ? number_format($document->file_size / 1024 / 1024, 1) . ' MB' : '0 MB' }} --}}
+                                        {{ $document->file_size }}
                                     </span>
                                 </div>
                                 @if ($document->description)
@@ -295,10 +295,10 @@
                                     <i class="fas fa-download mr-1"></i>Unduh
                                 </a>
                                 ${(doc.file_extension && doc.file_extension.toLowerCase() === 'pdf') ? `
-                                                                                                                                                                                                                                                                                    <a href="/layanan/${doc.id}/preview" target="_blank" class="bg-gray-100 text-gray-700 px-3 py-1 rounded text-sm hover:bg-gray-200">
-                                                                                                                                                                                                                                                                                        <i class="fas fa-eye mr-1"></i>Lihat
-                                                                                                                                                                                                                                                                                    </a>
-                                                                                                                                                                                                                                                                                ` : ''}
+                                                                                                                                                                                                                                                                                                                                    <a href="/layanan/${doc.id}/preview" target="_blank" class="bg-gray-100 text-gray-700 px-3 py-1 rounded text-sm hover:bg-gray-200">
+                                                                                                                                                                                                                                                                                                                                        <i class="fas fa-eye mr-1"></i>Lihat
+                                                                                                                                                                                                                                                                                                                                    </a>
+                                                                                                                                                                                                                                                                                                                                ` : ''}
                             </div>
                         `;
                         modalContent.appendChild(docElement);

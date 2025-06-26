@@ -28,16 +28,16 @@ class Document extends Model
 
     public function getFileUrlAttribute(): ?string
     {
-        return $this->file ? Storage::url($this->file) : null;
+        return $this->file ? Storage::disk('public')->url($this->file) : null;
     }
 
     public function getFileSizeAttribute(): ?string
     {
-        if (!$this->file || !Storage::exists($this->file)) {
+        if (!$this->file || !Storage::disk('public')->exists($this->file)) {
             return null;
         }
 
-        $bytes = Storage::size($this->file);
+        $bytes = Storage::disk('public')->size($this->file);
         $units = ['B', 'KB', 'MB', 'GB'];
 
         for ($i = 0; $bytes > 1024 && $i < count($units) - 1; $i++) {
@@ -49,11 +49,11 @@ class Document extends Model
 
     public function getFileSizeInBytesAttribute(): ?int
     {
-        if (!$this->file || !Storage::exists($this->file)) {
+        if (!$this->file || !Storage::disk('public')->exists($this->file)) {
             return null;
         }
 
-        return Storage::size($this->file);
+        return Storage::disk('public')->size($this->file);
     }
 
     public function getFileExtensionAttribute(): ?string
