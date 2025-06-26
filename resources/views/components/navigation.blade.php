@@ -30,14 +30,15 @@
                 </x-nav-dropdown>
 
                 <!-- Layanan Dropdown -->
-                <x-nav-dropdown title="Layanan" icon="fas fa-cogs">
-                    <x-nav-dropdown-item href="{{ route('services') }}" icon="fas fa-file-alt">
+                <x-nav-dropdown title="Layanan" icon="fas fa-cogs" :active="request()->routeIs(['services*', 'complaints*', 'transparency*'])">
+                    <x-nav-dropdown-item href="{{ route('services') }}" icon="fas fa-file-alt" :active="request()->routeIs('services*')">
                         Informasi Layanan
                     </x-nav-dropdown-item>
-                    <x-nav-dropdown-item href="{{ route('complaints.create') }}" icon="fas fa-comments">
+                    <x-nav-dropdown-item href="{{ route('complaints.create') }}" icon="fas fa-comments"
+                        :active="request()->routeIs('complaints*')">
                         Pengaduan Online
                     </x-nav-dropdown-item>
-                    <x-nav-dropdown-item href="{{ route('transparency') }}" icon="fas fa-chart-line">
+                    <x-nav-dropdown-item href="{{ route('transparency') }}" icon="fas fa-chart-line" :active="request()->routeIs('transparency*')">
                         Transparansi
                     </x-nav-dropdown-item>
                 </x-nav-dropdown>
