@@ -3,21 +3,21 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div>
                 <h3 class="text-xl font-bold text-green-400 mb-4">
-                    Desa Bantengputih
+                    Desa {{ $villageInfo?->name ?? 'Bantengputih' }}
                 </h3>
                 <p class="text-gray-300 mb-4">
-                    Desa yang maju, mandiri, dan sejahtera untuk seluruh warga
+                    {{ $villageInfo?->description ?? 'Desa Bantengputih adalah desa yang terletak di Kecamatan Karanggeneng, Kabupaten Lamongan. Kami berkomitmen untuk memberikan pelayanan terbaik kepada masyarakat.' }}
                 </p>
                 <div class="flex space-x-4">
-                    <a href="https://wa.me/6281331931077" target="_blank"
+                    <a href="https://wa.me/{{ $villageInfo?->phone ?? '#' }}" target="_blank"
                         class="text-gray-300 hover:text-green-400 transition-colors duration-200">
                         <i class="fab fa-whatsapp text-2xl"></i>
                     </a>
-                    <a href="https://facebook.com/desabantengputih" target="_blank"
+                    <a href="https://facebook.com/{{ $villageInfo?->facebook ?? '#' }}" target="_blank"
                         class="text-gray-300 hover:text-green-400 transition-colors duration-200">
                         <i class="fab fa-facebook text-2xl"></i>
                     </a>
-                    <a href="mailto:bantengputih@lamongan.go.id"
+                    <a href="mailto:{{ $villageInfo?->email ?? '#' }}"
                         class="text-gray-300 hover:text-green-400 transition-colors duration-200">
                         <i class="fas fa-envelope text-2xl"></i>
                     </a>
@@ -58,15 +58,15 @@
                 <div class="space-y-3 text-gray-300">
                     <p class="flex items-start space-x-2">
                         <i class="fas fa-map-marker-alt mt-1"></i>
-                        <span>Desa Bantengputih, Kec. Karanggeneng, Kab. Lamongan</span>
+                        <span>{{ $villageInfo?->address ?? 'Desa Bantengputih, Kec. Karanggeneng, Kab. Lamongan' }}</span>
                     </p>
                     <p class="flex items-center space-x-2">
                         <i class="fas fa-phone"></i>
-                        <span>(0322) 123-4567</span>
+                        <span>{{ $villageInfo?->phone ? '+62 ' . substr($villageInfo->phone, 2, 3) . ' ' . substr($villageInfo->phone, 5, 4) . ' ' . substr($villageInfo->phone, 9) : '-' }}</span>
                     </p>
                     <p class="flex items-center space-x-2">
                         <i class="fas fa-envelope"></i>
-                        <span>bantengputih@lamongan.go.id</span>
+                        <span>{{ $villageInfo?->email ?? '-' }}</span>
                     </p>
                 </div>
             </div>

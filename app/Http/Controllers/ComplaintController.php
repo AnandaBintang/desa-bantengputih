@@ -9,13 +9,7 @@ class ComplaintController extends Controller
 {
     public function create()
     {
-        $data = [
-            'contact_number' => '6281331931077',
-            'email' => 'pengaduan@desabantengputih.id',
-            'address' => 'Desa Bantengputih Kecamatan Karanggeneng Kabupaten Lamongan Provinsi Jawa Timur'
-        ];
-
-        return view('pages.complaints.create', compact('data'));
+        return view('pages.complaints.create');
     }
 
     public function submit(Request $request)

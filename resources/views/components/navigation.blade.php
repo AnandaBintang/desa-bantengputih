@@ -1,12 +1,13 @@
-<!-- filepath: /home/yats/Documents/projects/desa-bantengputih/resources/views/components/navigation.blade.php -->
 <nav class="bg-white shadow-lg fixed top-0 w-full z-50 transition-all duration-300" id="navbar">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-16">
             <!-- Logo -->
             <div class="flex items-center space-x-3">
-                <img src="{{ asset('images/logo.png') }}" alt="Logo Desa" class="w-10 h-10 rounded-full"
+                <img src="{{ $villageInfo?->logo ? asset('storage/' . $villageInfo->logo) : asset('images/logo.png') }}"
+                    alt="Logo Desa" class="w-10 h-10 rounded-full"
                     onerror="this.src='https://placehold.co/40x40/4CAF50/FFFFFF?text=LOGO'">
-                <span class="text-xl font-bold text-green-800">BANTENGPUTIH</span>
+                <span
+                    class="text-xl font-bold text-green-800">{{ strtoupper($villageInfo?->name ?? 'BANTENGPUTIH') }}</span>
             </div>
 
             <!-- Desktop Navigation -->

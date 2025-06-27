@@ -55,7 +55,7 @@
                     <p class="text-gray-600 mb-6">
                         Hubungi langsung melalui WhatsApp untuk pengaduan yang bersifat mendesak
                     </p>
-                    <a href="https://wa.me/{{ $data['contact_number'] }}" target="_blank"
+                    <a href="https://wa.me/{{ $villageInfo?->phone }}" target="_blank"
                         class="inline-flex items-center bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-colors duration-200">
                         <i class="fab fa-whatsapp mr-2"></i>
                         Hubungi Sekarang
@@ -330,9 +330,9 @@
                     </div>
                     <h3 class="text-xl font-bold text-secondary mb-4">Telepon</h3>
                     <p class="text-gray-600 mb-4">Hubungi langsung untuk urusan mendesak</p>
-                    <a href="tel:+{{ $data['contact_number'] }}"
+                    <a href="tel:+{{ $villageInfo?->phone }}"
                         class="font-semibold hover:underline transition-colors duration-200" style="color: #4CAF50;">
-                        {{ '+62 ' . substr($data['contact_number'], 2, 3) . ' ' . substr($data['contact_number'], 5, 4) . ' ' . substr($data['contact_number'], 9) }}
+                        {{ $villageInfo?->phone ? '+62 ' . substr($villageInfo->phone, 2, 3) . ' ' . substr($villageInfo->phone, 5, 4) . ' ' . substr($villageInfo->phone, 9) : '-' }}</span>
                     </a>
                 </div>
 
@@ -343,9 +343,9 @@
                     </div>
                     <h3 class="text-xl font-bold text-secondary mb-4">Email</h3>
                     <p class="text-gray-600 mb-4">Kirim email untuk pengaduan tertulis</p>
-                    <a href="mailto:{{ $data['email'] }}"
+                    <a href="mailto:{{ $villageInfo?->email }}"
                         class="font-semibold hover:underline transition-colors duration-200" style="color: #4CAF50;">
-                        {{ $data['email'] }}
+                        {{ $villageInfo?->email }}
                     </a>
                 </div>
 
@@ -357,7 +357,7 @@
                     <h3 class="text-xl font-bold text-secondary mb-4">Kunjungi Kami</h3>
                     <p class="text-gray-600 mb-4">Datang langsung ke kantor desa</p>
                     <p class="font-semibold" style="color: #4CAF50;">
-                        {{ $data['address'] }}<br>
+                        {{ $villageInfo?->address }}<br>
                         Senin - Jumat, 08:00 - 16:00
                     </p>
                 </div>
