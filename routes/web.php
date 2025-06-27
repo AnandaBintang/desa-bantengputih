@@ -8,6 +8,7 @@ use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\GuestUploadController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\ComplaintController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -57,9 +58,9 @@ Route::get('/kontak', function () {
     return view('pages.contact');
 })->name('contact');
 
-Route::get('/pengaduan', function () {
-    return view('pages.complaints.create');
-})->name('complaints.create');
+// Complaint routes
+Route::get('/pengaduan', [ComplaintController::class, 'create'])->name('complaints.create');
+Route::post('/pengaduan', [ComplaintController::class, 'submit'])->name('complaints.submit');
 
 Route::get('/transparansi', function () {
     return view('pages.transparency');
