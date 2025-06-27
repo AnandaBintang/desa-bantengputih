@@ -9,6 +9,7 @@ use App\Http\Controllers\GuestUploadController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\ComplaintController;
+use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -54,9 +55,7 @@ Route::get('/produk', function () {
     return view('pages.products.index');
 })->name('products.index');
 
-Route::get('/kontak', function () {
-    return view('pages.contact');
-})->name('contact');
+Route::get('/kontak', [ContactController::class, 'index'])->name('contact');
 
 // Complaint routes
 Route::get('/pengaduan', [ComplaintController::class, 'create'])->name('complaints.create');

@@ -49,7 +49,7 @@
                     <span>Produk Desa</span>
                 </x-nav-link>
 
-                <x-nav-link href="{{ route('contact') }}">
+                <x-nav-link href="{{ route('contact') }}" :active="request()->routeIs('contact')">
                     <i class="fas fa-phone"></i>
                     <span>Kontak</span>
                 </x-nav-link>
