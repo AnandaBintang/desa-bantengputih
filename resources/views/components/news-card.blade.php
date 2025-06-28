@@ -3,7 +3,7 @@
 
 <article
     class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
-    <img src="{{ $article->featured_image ?? 'https://placehold.co/400x250/4CAF50/FFFFFF?text=Berita+Desa' }}"
+    <img src="{{ $article->media_url ?? 'https://placehold.co/400x250/4CAF50/FFFFFF?text=Berita+Desa' }}"
         alt="{{ $article->title }}" class="w-full h-48 object-cover"
         onerror="this.src='https://placehold.co/400x250/4CAF50/FFFFFF?text=Berita+Desa'">
     <div class="p-6">

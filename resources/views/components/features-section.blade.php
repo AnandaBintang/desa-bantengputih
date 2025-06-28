@@ -7,8 +7,9 @@
             <a href="{{ route('products.index') }}"
                 class="group bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transform hover:-translate-y-2 transition-all duration-300">
                 <div class="h-48 overflow-hidden">
-                    <img src="https://placehold.co/400x200/4CAF50/FFFFFF?text=Produk+Desa" alt="Produk Desa"
-                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                    <img src="{{ asset('images/banner-produk-desa.jpg') }}" alt="Produk Desa"
+                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                        onerror="this.onerror=null;this.src='https://placehold.co/400x200/4CAF50/FFFFFF?text=Produk+Desa';">
                 </div>
                 <div class="p-6 text-center">
                     <i class="fas fa-shopping-basket text-3xl mb-4" style="color: #4CAF50;"></i>
@@ -24,8 +25,9 @@
             <a href="{{ route('complaints.create') }}"
                 class="group bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transform hover:-translate-y-2 transition-all duration-300">
                 <div class="h-48 overflow-hidden">
-                    <img src="https://placehold.co/400x200/4CAF50/FFFFFF?text=Pengaduan+Online" alt="Pengaduan Online"
-                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                    <img src="{{ asset('images/banner-pengaduan-online.jpg') }}" alt="Pengaduan Online"
+                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                        onerror="this.onerror=null;this.src='https://placehold.co/400x200/4CAF50/FFFFFF?text=Pengaduan+Online';">
                 </div>
                 <div class="p-6 text-center">
                     <i class="fas fa-comments text-3xl mb-4" style="color: #4CAF50;"></i>
@@ -41,8 +43,9 @@
             <a href="{{ route('transparency') }}"
                 class="group bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transform hover:-translate-y-2 transition-all duration-300">
                 <div class="h-48 overflow-hidden">
-                    <img src="https://placehold.co/400x200/4CAF50/FFFFFF?text=Transparansi" alt="Transparansi"
-                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                    <img src="{{ asset('images/banner-transparansi.png') }}" alt="Transparansi"
+                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                        onerror="this.onerror=null;this.src='https://placehold.co/400x200/4CAF50/FFFFFF?text=Transparansi';">
                 </div>
                 <div class="p-6 text-center">
                     <i class="fas fa-chart-line text-3xl mb-4" style="color: #4CAF50;"></i>

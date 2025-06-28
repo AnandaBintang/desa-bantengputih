@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\News;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -110,35 +111,11 @@ class HomeController extends Controller
         ];
 
         // Mock news data
-        $latestNews = collect([
-            (object) [
-                'id' => 1,
-                'title' => 'Peresmian Jalan Desa Baru Sepanjang 2 KM',
-                'slug' => 'peresmian-jalan-desa-baru',
-                'excerpt' => 'Kepala Desa Musthofa meresmikan pembangunan jalan desa sepanjang 2 kilometer yang menghubungkan dusun terpencil dengan pusat desa...',
-                'content' => 'Kepala Desa Musthofa meresmikan pembangunan jalan desa sepanjang 2 kilometer yang menghubungkan dusun terpencil dengan pusat desa...',
-                'featured_image' => asset('images/berita-jalan-desa.jpg'),
-                'published_at' => now()->subDays(3),
-            ],
-            (object) [
-                'id' => 2,
-                'title' => 'Pelatihan UMKM untuk Ibu-ibu PKK',
-                'slug' => 'pelatihan-umkm-ibu-pkk',
-                'excerpt' => 'Kegiatan pelatihan pembuatan produk olahan makanan untuk ibu-ibu PKK dalam rangka meningkatkan ekonomi keluarga...',
-                'content' => 'Kegiatan pelatihan pembuatan produk olahan makanan untuk ibu-ibu PKK dalam rangka meningkatkan ekonomi keluarga...',
-                'featured_image' => asset('images/berita-pelatihan-umkm.jpg'),
-                'published_at' => now()->subDays(7),
-            ],
-            (object) [
-                'id' => 3,
-                'title' => 'Gotong Royong Pembersihan Sungai Desa',
-                'slug' => 'gotong-royong-pembersihan-sungai',
-                'excerpt' => 'Warga bergotong royong membersihkan sungai desa untuk menjaga kelestarian lingkungan dan mencegah banjir saat musim hujan...',
-                'content' => 'Warga bergotong royong membersihkan sungai desa untuk menjaga kelestarian lingkungan dan mencegah banjir saat musim hujan...',
-                'featured_image' => asset('images/berita-gotong-royong.jpg'),
-                'published_at' => now()->subDays(10),
-            ]
-        ]);
+        $latestNews = News::latest()->take(3)->get()->map(function ($news) {
+            $media = $news->getFirstMedia('news');
+            $news->media_url = $media ? $media->getUrl() : null;
+            return $news;
+        });
 
         return view('pages.home', array_merge(compact('heroSlides', 'stats', 'latestNews'), $seoData));
     }
