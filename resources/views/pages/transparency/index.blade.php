@@ -58,71 +58,56 @@
             </div>
             <nav aria-label="Filter dokumen">
                 <ul class="flex flex-wrap justify-center mb-12 border-b border-gray-200">
-                    @foreach ($categories as $cat)
+                    @foreach ($types as $type)
                         <li>
-                            <button onclick="showCategory('{{ $cat }}')"
+                            <button onclick="showCategory('{{ $type }}')"
                                 class="category-btn px-6 py-3 mx-2 mb-4 font-semibold {{ $loop->first ? 'text-primary border-b-2 border-primary' : 'text-gray-600 hover:text-primary' }}"
-                                id="{{ $cat }}-btn" type="button">
-                                {!! $categoryIcons[$cat] ?? '<i class=\'fas fa-folder\'></i>' !!} {{ ucfirst($cat) }}
+                                id="{{ $type }}-btn" type="button">
+                                {!! $typeIcons[$type] ?? '<i class=\'fas fa-folder\'></i>' !!} {{ ucfirst($type) }}
                             </button>
                         </li>
                     @endforeach
                 </ul>
             </nav>
-            @foreach ($categories as $cat)
-                <div id="{{ $cat }}" class="category-content {{ $loop->first ? '' : 'hidden' }}">
+            @foreach ($types as $type)
+                <div id="{{ $type }}" class="category-content {{ $loop->first ? '' : 'hidden' }}">
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        @forelse($documentsByCategory[$cat] as $doc)
+                        @forelse($documentsByType[$type] as $doc)
                             <article
-                                class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300"
-                                itemscope itemtype="https://schema.org/CreativeWork">
-                                <div class="flex items-start space-x-4">
+                                class="bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col h-full">
+                                <div class="flex items-center mb-4">
                                     <div
-                                        class="w-12 h-12 {{ $categoryBg[$cat] ?? 'bg-gray-100' }} rounded-lg flex items-center justify-center flex-shrink-0">
-                                        {!! $categoryIcons[$cat] ?? '<i class="fas fa-folder text-gray-500"></i>' !!}
+                                        class="w-12 h-12 {{ $typeBg[$type] ?? 'bg-gray-100' }} rounded-xl flex items-center justify-center mr-4">
+                                        {!! $typeIcons[$type] ?? '<i class="fas fa-folder text-gray-500"></i>' !!}
                                     </div>
-                                    <div class="flex-1">
-                                        <h3 class="text-lg font-bold text-secondary mb-2" itemprop="name">
-                                            {{ $doc->title }}
-                                        </h3>
-                                        <p class="text-gray-600 text-sm mb-4" itemprop="description">
-                                            {{ Str::limit(strip_tags($doc->description), 120) }}
-                                        </p>
-                                        <div class="flex items-center justify-between">
-                                            <span class="text-xs text-gray-500">
-                                                <i
-                                                    class="fas fa-calendar mr-1"></i>{{ $doc->uploaded_at ? $doc->uploaded_at->format('d M Y') : $doc->created_at->format('d M Y') }}
-                                            </span>
-                                            <div class="flex space-x-2">
-                                                <a href="{{ route('document.preview', $doc) }}"
-                                                    class="text-primary hover:text-accent text-sm font-medium"
-                                                    target="_blank" rel="noopener"
-                                                    aria-label="Lihat {{ $doc->title }}">
-                                                    <i class="fas fa-eye mr-1"></i>Lihat
-                                                </a>
-                                                <a href="{{ route('document.download', $doc) }}"
-                                                    class="text-blue-500 hover:text-blue-700 text-sm font-medium"
-                                                    aria-label="Unduh {{ $doc->title }}">
-                                                    <i class="fas fa-download mr-1"></i>Unduh
-                                                </a>
-                                            </div>
-                                        </div>
+                                    <div>
+                                        <h3 class="text-lg font-semibold text-secondary leading-tight mb-1">
+                                            {{ $doc->title }}</h3>
+                                        <span class="text-xs text-gray-400 flex items-center">
+                                            <i class="fas fa-calendar mr-1"></i>
+                                            {{ $doc->uploaded_at ? $doc->uploaded_at->format('d M Y') : $doc->created_at->format('d M Y') }}
+                                        </span>
                                     </div>
                                 </div>
-                                <script type="application/ld+json">
-                                {
-                                    "@context": "https://schema.org",
-                                    "@type": "CreativeWork",
-                                    "name": "{{ $doc->title }}",
-                                    "description": "{{ strip_tags($doc->description) }}",
-                                    "datePublished": "{{ $doc->uploaded_at ? $doc->uploaded_at->toDateString() : $doc->created_at->toDateString() }}",
-                                    "url": "{{ route('document.preview', $doc) }}"
-                                }
-                                </script>
+                                <div class="flex-1">
+                                    <p class="text-gray-600 text-sm mb-4 line-clamp-3">
+                                        {{ Str::limit(strip_tags($doc->description), 120) }}
+                                    </p>
+                                </div>
+                                <div class="flex justify-between items-center mt-auto pt-2 border-t border-gray-100">
+                                    <a href="{{ route('document.preview', $doc) }}"
+                                        class="inline-flex items-center text-primary hover:text-accent text-sm font-medium transition-colors"
+                                        target="_blank" rel="noopener">
+                                        <i class="fas fa-eye mr-1"></i>Lihat
+                                    </a>
+                                    <a href="{{ route('document.download', $doc) }}"
+                                        class="inline-flex items-center text-blue-500 hover:text-blue-700 text-sm font-medium transition-colors">
+                                        <i class="fas fa-download mr-1"></i>Unduh
+                                    </a>
+                                </div>
                             </article>
                         @empty
-                            <div class="col-span-full text-center text-gray-500">Belum ada dokumen pada kategori ini.
-                            </div>
+                            <div class="col-span-full text-center text-gray-500">Belum ada dokumen pada tipe ini.</div>
                         @endforelse
                     </div>
                 </div>

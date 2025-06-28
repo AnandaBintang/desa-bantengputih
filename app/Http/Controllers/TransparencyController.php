@@ -8,24 +8,29 @@ class TransparencyController extends Controller
 {
     public function index()
     {
-        $categories = Document::select('category')->distinct()->pluck('category')->toArray();
+        $types = [
+            'Peraturan Desa',
+            'Keputusan Kepala Desa',
+            'Program & Kegiatan',
+            'Laporan',
+        ];
 
-        $documentsByCategory = [];
-        foreach ($categories as $cat) {
-            $documentsByCategory[$cat] = Document::byCategory($cat)->published()->orderByDesc('uploaded_at')->limit(9)->get();
+        $documentsByType = [];
+        foreach ($types as $type) {
+            $documentsByType[$type] = Document::where('type', $type)->published()->orderByDesc('uploaded_at')->limit(9)->get();
         }
 
-        $categoryIcons = [
-            'anggaran' => '<i class="fas fa-money-bill-wave mr-2"></i>',
-            'peraturan' => '<i class="fas fa-gavel mr-2"></i>',
-            'program' => '<i class="fas fa-tasks mr-2"></i>',
-            'laporan' => '<i class="fas fa-chart-bar mr-2"></i>',
+        $typeIcons = [
+            'Peraturan Desa' => '<i class="fas fa-gavel mr-2"></i>',
+            'Keputusan Kepala Desa' => '<i class="fas fa-stamp mr-2"></i>',
+            'Program & Kegiatan' => '<i class="fas fa-tasks mr-2"></i>',
+            'Laporan' => '<i class="fas fa-chart-bar mr-2"></i>',
         ];
-        $categoryBg = [
-            'anggaran' => 'bg-green-100',
-            'peraturan' => 'bg-red-100',
-            'program' => 'bg-orange-100',
-            'laporan' => 'bg-blue-100',
+        $typeBg = [
+            'Peraturan Desa' => 'bg-red-100',
+            'Keputusan Kepala Desa' => 'bg-purple-100',
+            'Program & Kegiatan' => 'bg-orange-100',
+            'Laporan' => 'bg-blue-100',
         ];
 
         $stats = [
@@ -54,13 +59,13 @@ class TransparencyController extends Controller
             ],
         ];
 
-        return view('pages.transparency.index', compact(
-            'categories',
-            'documentsByCategory',
-            'categoryIcons',
-            'categoryBg',
-            'stats',
-            'faqs'
-        ));
+        return view('pages.transparency.index', [
+            'types' => $types,
+            'documentsByType' => $documentsByType,
+            'typeIcons' => $typeIcons,
+            'typeBg' => $typeBg,
+            'stats' => $stats,
+            'faqs' => $faqs,
+        ]);
     }
 }
