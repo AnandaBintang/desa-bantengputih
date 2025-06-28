@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Schema;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -18,6 +19,8 @@ class AppServiceProvider extends ServiceProvider
         Validator::replacer('current_password', function ($message, $attribute, $rule, $parameters) {
             return 'Password saat ini tidak sesuai.';
         });
+
+        Schema::defaultStringLength(191);
     }
 
     public function register(): void
