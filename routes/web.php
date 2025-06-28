@@ -50,9 +50,8 @@ Route::get('/layanan/{document}/download', [ServiceController::class, 'download'
 // Population routes
 Route::get('/penduduk', [PopulationController::class, 'index'])->name('population');
 
-Route::get('/produk', function () {
-    return view('pages.products.index');
-})->name('products.index');
+Route::get('/produk', [\App\Http\Controllers\ProductController::class, 'index'])->name('products.index');
+Route::get('/produk/{product}', [\App\Http\Controllers\ProductController::class, 'show'])->name('products.show');
 
 Route::get('/kontak', [ContactController::class, 'index'])->name('contact');
 
