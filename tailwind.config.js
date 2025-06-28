@@ -15,6 +15,16 @@ export default {
             primary: "#4CAF50",
             secondary: "#2c5530",
             accent: "#45a049",
+            yellow: {
+                100: "#FEF9C3",
+                500: "#F59E42",
+                600: "#D97706"
+            },
+            purple: {
+                100: "#E9D5FF",
+                500: "#8B5CF6",
+                600: "#7C3AED"
+            }
         },
         fontFamily: {
             poppins: ["Poppins", "sans-serif"],

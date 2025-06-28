@@ -11,6 +11,8 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\ComplaintController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PopulationController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\TransparencyController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -50,8 +52,8 @@ Route::get('/layanan/{document}/download', [ServiceController::class, 'download'
 // Population routes
 Route::get('/penduduk', [PopulationController::class, 'index'])->name('population');
 
-Route::get('/produk', [\App\Http\Controllers\ProductController::class, 'index'])->name('products.index');
-Route::get('/produk/{product}', [\App\Http\Controllers\ProductController::class, 'show'])->name('products.show');
+Route::get('/produk', [ProductController::class, 'index'])->name('products.index');
+Route::get('/produk/{product}', [ProductController::class, 'show'])->name('products.show');
 
 Route::get('/kontak', [ContactController::class, 'index'])->name('contact');
 
@@ -59,9 +61,7 @@ Route::get('/kontak', [ContactController::class, 'index'])->name('contact');
 Route::get('/pengaduan', [ComplaintController::class, 'create'])->name('complaints.create');
 Route::post('/pengaduan', [ComplaintController::class, 'submit'])->name('complaints.submit');
 
-Route::get('/transparansi', function () {
-    return view('pages.transparency');
-})->name('transparency');
+Route::get('/transparansi', [TransparencyController::class, 'index'])->name('transparency');
 
 // SEO Routes
 Route::get('/sitemap.xml', function () {
