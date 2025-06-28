@@ -10,6 +10,7 @@ use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\ComplaintController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\PopulationController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -47,9 +48,7 @@ Route::get('/layanan/{document}/preview', [ServiceController::class, 'preview'])
 Route::get('/layanan/{document}/download', [ServiceController::class, 'download'])->name('services.download');
 
 // Population routes
-Route::get('/penduduk', function () {
-    return view('pages.population.index');
-})->name('population');
+Route::get('/penduduk', [PopulationController::class, 'index'])->name('population');
 
 Route::get('/produk', function () {
     return view('pages.products.index');

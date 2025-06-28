@@ -11,15 +11,14 @@ export default {
     ],
     theme: {
         extend: {
-            fontFamily: {
-                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
-                poppins: ['Poppins', 'sans-serif'],
-            },
-            colors: {
-                primary: '#10b981',
-                secondary: '#065f46',
-                accent: '#059669',
-            },
+        colors: {
+            primary: "#4CAF50",
+            secondary: "#2c5530",
+            accent: "#45a049",
+        },
+        fontFamily: {
+            poppins: ["Poppins", "sans-serif"],
+        },
         },
     },
     plugins: [],

@@ -31,8 +31,8 @@
                 </x-nav-dropdown>
 
                 <!-- Layanan Dropdown -->
-                <x-nav-dropdown title="Layanan" icon="fas fa-cogs" :active="request()->routeIs(['services*', 'complaints*', 'transparency*'])">
-                    <x-nav-dropdown-item href="{{ route('services') }}" icon="fas fa-file-alt" :active="request()->routeIs('services*')">
+                <x-nav-dropdown title="Layanan" icon="fas fa-cogs" :active="request()->routeIs(['services*', 'complaints*', 'transparency*', 'population*'])">
+                    <x-nav-dropdown-item href="{{ route('services') }}" icon="fas fa-file-alt" :active="request()->routeIs(['services*', 'population*'])">
                         Informasi Layanan
                     </x-nav-dropdown-item>
                     <x-nav-dropdown-item href="{{ route('complaints.create') }}" icon="fas fa-comments"
