@@ -25,7 +25,7 @@ Website dinamis untuk Desa Banteng Putih menggunakan **Laravel 11**, **Filament 
 ### 1. Clone & Install
 
 ```bash
-git clone https://github.com/namamu/desa-banteng-putih.git
+git clone https://github.com/AnandaBintang/desa-banteng-putih.git
 cd desa-banteng-putih
 
 composer install

@@ -21,6 +21,7 @@ class UserSeeder extends Seeder
                 'name' => 'Admin Desa',
                 'password' => Hash::make('password'),
                 'role' => 'admin',
+                'email_verified_at' => now(),
             ]
         );
 
@@ -30,6 +31,7 @@ class UserSeeder extends Seeder
                 'name' => 'Super Admin',
                 'password' => Hash::make('mobil3135oyi'),
                 'role' => 'super_admin',
+                'email_verified_at' => now(),
             ]
         );
     }
