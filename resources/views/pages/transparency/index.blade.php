@@ -1,14 +1,6 @@
 {{-- filepath: resources/views/pages/transparency/index.blade.php --}}
 <x-layouts.app :title="'Transparansi Desa Bantengputih'" :description="'Akses dokumen, laporan keuangan, dan informasi publik Desa Bantengputih secara terbuka dan akuntabel.'" :keywords="'transparansi desa, dokumen publik, laporan keuangan, keterbukaan informasi, desa bantengputih, lamongan'" :canonical="route('transparency')" :ogTitle="'Transparansi Desa Bantengputih'"
     :ogDescription="'Akses dokumen, laporan keuangan, dan informasi publik Desa Bantengputih secara terbuka dan akuntabel.'" :ogImage="asset('images/og-image-transparansi.jpg')">
-    <nav aria-label="Breadcrumb" class="max-w-7xl mx-auto px-4 py-4">
-        <ol class="flex items-center space-x-2 text-sm text-gray-600">
-            <li><a href="{{ route('home') }}" class="hover:underline">Beranda</a></li>
-            <li><span aria-hidden="true">/</span></li>
-            <li aria-current="page" class="text-primary font-semibold">Transparansi</li>
-        </ol>
-    </nav>
-
     <section class="bg-gradient-to-r from-primary to-accent py-20" itemscope itemtype="https://schema.org/WebPage">
         <div class="max-w-7xl mx-auto px-4 text-center">
             <h1 class="text-4xl md:text-5xl font-bold text-white mb-6" itemprop="name">Transparansi Desa</h1>
