@@ -1,4 +1,5 @@
-<x-layouts.app :title="'Produk UMKM Desa Bantengputih'" :description="'Temukan produk unggulan desa Bantengputih.'">
+<x-layouts.app :title="'Produk UMKM Desa Bantengputih'" :description="'Temukan berbagai produk unggulan hasil karya warga Desa Bantengputih dengan kualitas terbaik dan harga terjangkau.'" :keywords="'produk desa bantengputih, umkm lamongan, produk unggulan desa, pertanian, perikanan, jual produk desa, produk lokal lamongan'" :canonical="route('products.index')" :ogTitle="'Produk UMKM Desa Bantengputih'"
+    :ogDescription="'Temukan berbagai produk unggulan hasil karya warga Desa Bantengputih dengan kualitas terbaik dan harga terjangkau.'" :ogImage="asset('images/og-image-produk.jpg')">
     <section class="bg-gradient-to-r from-primary to-accent py-20">
         <div class="max-w-7xl mx-auto px-4 text-center">
             <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">Produk UMKM Desa</h1>
