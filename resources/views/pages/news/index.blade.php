@@ -112,7 +112,7 @@
                     data-category="{{ $featuredNews->category }}">
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                         <div class="relative">
-                            <img src="{{ $featuredNews->featured_image }}" alt="{{ $featuredNews->title }}"
+                            <img src="{{ $featuredNews->media_url }}" alt="{{ $featuredNews->title }}"
                                 class="w-full h-64 lg:h-full object-cover" />
                             <div class="absolute top-4 left-4">
                                 <span class="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
@@ -177,7 +177,7 @@
                             class="news-card bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
                             data-category="{{ $article->category }}">
                             <div class="relative">
-                                <img src="{{ $article->featured_image }}" alt="{{ $article->title }}"
+                                <img src="{{ $article->media_url }}" alt="{{ $article->title }}"
                                     class="w-full h-48 object-cover" />
                                 <div class="absolute top-4 left-4">
                                     <span

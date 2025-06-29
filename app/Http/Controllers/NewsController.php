@@ -30,7 +30,19 @@ class NewsController extends Controller
             ->recent()
             ->first();
 
+        if ($featuredNews) {
+            $media = $featuredNews->getFirstMedia('news');
+            $featuredNews->media_url = $media ? $media->getUrl() : null;
+        }
+
         $news = $query->paginate(6);
+
+        // Attach media_url to each news item
+        $news->getCollection()->transform(function ($item) {
+            $media = $item->getFirstMedia('news');
+            $item->media_url = $media ? $media->getUrl() : null;
+            return $item;
+        });
 
         $categories = [
             'semua' => ['name' => 'Semua Berita', 'icon' => 'fas fa-globe', 'color' => 'bg-primary'],
