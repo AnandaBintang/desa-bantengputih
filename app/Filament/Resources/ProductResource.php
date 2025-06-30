@@ -53,6 +53,8 @@ class ProductResource extends Resource
                     ->options([
                         'Pertanian' => 'Pertanian',
                         'Perikanan' => 'Perikanan',
+                        'UMKM' => 'UMKM',
+                        'Lainnya' => 'Lainnya',
                     ])
                     ->required(),
 
