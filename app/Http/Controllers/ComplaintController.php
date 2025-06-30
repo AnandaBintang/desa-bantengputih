@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Village;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -33,8 +34,7 @@ class ComplaintController extends Controller
 
         $message = $this->formatWhatsAppMessage($request->all());
 
-        // $whatsappNumber = '6281331931077';
-        $whatsappNumber = '6285330632334';
+        $whatsappNumber = Village::first()->phone ?? '6281331931077';
 
         $whatsappUrl = "https://wa.me/{$whatsappNumber}?text=" . urlencode($message);
 
