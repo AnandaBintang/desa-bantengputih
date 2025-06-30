@@ -53,7 +53,7 @@
                             <i class="fas fa-gavel text-2xl text-blue-600"></i>
                         </div>
                         <h3 class="text-2xl font-bold text-secondary">
-                            Keputusan Kepala Desa
+                            Peraturan Desa
                         </h3>
                     </div>
                     <div class="space-y-4">
@@ -295,10 +295,10 @@
                                     <i class="fas fa-download mr-1"></i>Unduh
                                 </a>
                                 ${(doc.file_extension && doc.file_extension.toLowerCase() === 'pdf') ? `
-                                                                                                                                                                                                                                                                                                                                            <a href="/layanan/${doc.id}/preview" target="_blank" class="bg-gray-100 text-gray-700 px-3 py-1 rounded text-sm hover:bg-gray-200">
-                                                                                                                                                                                                                                                                                                                                                <i class="fas fa-eye mr-1"></i>Lihat
-                                                                                                                                                                                                                                                                                                                                            </a>
-                                                                                                                                                                                                                                                                                                                                        ` : ''}
+                                                                                                                                                                                                                                                                                                                                                    <a href="/layanan/${doc.id}/preview" target="_blank" class="bg-gray-100 text-gray-700 px-3 py-1 rounded text-sm hover:bg-gray-200">
+                                                                                                                                                                                                                                                                                                                                                        <i class="fas fa-eye mr-1"></i>Lihat
+                                                                                                                                                                                                                                                                                                                                                    </a>
+                                                                                                                                                                                                                                                                                                                                                ` : ''}
                             </div>
                         `;
                         modalContent.appendChild(docElement);
