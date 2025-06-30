@@ -40,7 +40,7 @@ class StatsOverview extends BaseWidget
                 ->chart([7, 3, 4, 5, 6, 3, 5]),
 
             Stat::make('Total Pengguna', User::whereDoesntHave('role', function ($query) {
-                $query->where('role', 'super_admin');
+                $query->where('name', 'super_admin');
             })->count())
                 ->description('Pengguna terdaftar')
                 ->descriptionIcon('heroicon-m-users')
