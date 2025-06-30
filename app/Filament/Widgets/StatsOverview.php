@@ -39,9 +39,7 @@ class StatsOverview extends BaseWidget
                 ->color('primary')
                 ->chart([7, 3, 4, 5, 6, 3, 5]),
 
-            Stat::make('Total Pengguna', User::whereDoesntHave('role', function ($query) {
-                $query->where('name', 'super_admin');
-            })->count())
+            Stat::make('Total Pengguna', User::where('role', '!=', 'super_admin')->count())
                 ->description('Pengguna terdaftar')
                 ->descriptionIcon('heroicon-m-users')
                 ->color('gray')
