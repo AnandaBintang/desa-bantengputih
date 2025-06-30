@@ -120,7 +120,7 @@
                     <article class="bg-white rounded-xl shadow-lg overflow-hidden">
                         <!-- Article Header -->
                         <div class="relative">
-                            <img src="{{ $news->featured_image }}" alt="{{ $news->title }}"
+                            <img src="{{ $news->media_url }}" alt="{{ $news->title }}"
                                 class="w-full h-64 md:h-80 object-cover" />
                             <div class="absolute top-4 left-4">
                                 <span
@@ -220,7 +220,7 @@
                                 @foreach ($relatedNews as $related)
                                     <article
                                         class="flex space-x-3 pb-4 border-b border-gray-200 last:border-b-0 last:pb-0">
-                                        <img src="{{ $related->featured_image }}" alt="{{ $related->title }}"
+                                        <img src="{{ $related->media_url }}" alt="{{ $related->title }}"
                                             class="w-20 h-15 object-cover rounded-lg flex-shrink-0" />
                                         <div class="flex-1">
                                             <h4

@@ -73,6 +73,16 @@ class NewsController extends Controller
             ->limit(3)
             ->get();
 
+        // Attach media_url to related news items
+        $relatedNews->each(function ($item) {
+            $media = $item->getFirstMedia('news');
+            $item->media_url = $media ? $media->getUrl() : null;
+        });
+
+        // Attach media_url to the news item
+        $media = $news->getFirstMedia('news');
+        $news->media_url = $media ? $media->getUrl() : null;
+
         $categories = [
             'semua' => ['name' => 'Semua Berita', 'icon' => 'fas fa-globe', 'color' => 'bg-primary'],
             'pembangunan' => ['name' => 'Pembangunan', 'icon' => 'fas fa-hammer', 'color' => 'bg-blue-500'],
