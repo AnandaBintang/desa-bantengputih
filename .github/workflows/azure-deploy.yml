@@ -3,8 +3,8 @@ name: Deploy Laravel to Azure
 on:
   push:
     branches:
-      - main  # atau master, sesuaikan dengan branch utama Anda
-  workflow_dispatch:  # Memungkinkan deploy manual dari GitHub
+      - main
+  workflow_dispatch:
 
 jobs:
   build-and-deploy:
@@ -17,7 +17,7 @@ jobs:
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
       with:
-        php-version: '8.2'  # Sesuaikan dengan versi PHP Anda
+        php-version: '8.2'
         extensions: mbstring, xml, ctype, iconv, intl, pdo_mysql, dom, filter, gd, json, zip
 
     - name: Check PHP version
@@ -64,6 +64,6 @@ jobs:
     - name: Deploy to Azure Web App
       uses: azure/webapps-deploy@v3
       with:
-        app-name: 'desa-bantengputih'  # PASTIKAN NAMA INI SESUAI dengan nama App Service di Azure
+        app-name: 'desa-bantengputih'
         publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
         package: ./deploy
